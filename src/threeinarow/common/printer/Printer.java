@@ -1,6 +1,6 @@
 package threeinarow.common.printer;
 
-import threeinarow.game.matrix.Matrix;
+import threeinarow.game.Matrix;
 
 public class Printer {
 

@@ -1,4 +1,4 @@
-package threeinarow.game.matrix;
+package threeinarow.game;
 
 public enum Letter {
 

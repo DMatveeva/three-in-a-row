@@ -1,7 +1,7 @@
 package threeinarow.common.command;
 
 import threeinarow.Main;
-import threeinarow.game.matrix.Matrix;
+import threeinarow.game.Matrix;
 
 public abstract class Command {
 

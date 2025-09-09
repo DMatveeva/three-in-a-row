@@ -1,8 +1,5 @@
-package threeinarow.game.matrix;
+package threeinarow.game;
 
-
-import threeinarow.game.Coordinate;
-import threeinarow.game.Figures;
 
 /**
  * АТД

@@ -1,7 +1,4 @@
-package threeinarow.game.matrix;
-
-import threeinarow.game.Coordinate;
-import threeinarow.game.Figures;
+package threeinarow.game;
 
 import java.util.LinkedHashMap;
 

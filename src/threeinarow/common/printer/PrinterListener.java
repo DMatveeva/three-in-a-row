@@ -1,8 +1,8 @@
 package threeinarow.common.printer;
 
-import threeinarow.game.matrix.Matrix;
+import threeinarow.game.Matrix;
 
 public interface PrinterListener {
 
-    public void print(Matrix matrix, CommandType commandType);
+    public void print(Matrix matrix);
 }

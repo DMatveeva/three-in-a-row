@@ -1,6 +1,4 @@
-package threeinarow.game.matrix;
-
-import threeinarow.game.Coordinate;
+package threeinarow.game;
 
 public abstract class Cell {
 
