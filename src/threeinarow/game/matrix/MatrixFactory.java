@@ -1,0 +1,57 @@
+package threeinarow.game.matrix;
+
+import threeinarow.Game;
+import threeinarow.game.Coordinate;
+import threeinarow.game.Figures;
+
+import java.util.Arrays;
+import java.util.LinkedHashMap;
+import java.util.Random;
+
+public class MatrixFactory {
+
+    public static final MatrixFactory INSTANCE = new MatrixFactory();
+
+    static final int size = 64;
+    static final int width = 8;
+    private final static Random random = new Random();
+
+    public static Matrix create() {
+        int[][] adjacencyMatrix = getAdjacencyMatrix();
+        LinkedHashMap<Coordinate, Letter> cells = new LinkedHashMap<>();
+        return new GameMatrix(cells, adjacencyMatrix);
+    }
+
+    public static int[][] getAdjacencyMatrix() {
+        int [][] adjacencyMatrix = new int[size][size];
+
+        for (int i = 0; i < size; i++) {
+            for (int j = 0; j < size; j++) {
+                if (areNeighbors(i, j)) {
+                    adjacencyMatrix[i][j] = 1;
+                }
+            }
+        }
+        return adjacencyMatrix;
+    }
+
+    private static boolean areNeighbors(int a, int b) {
+        int ax = a % width;  //0 ...7
+        int ay = a / width;  //0 ...7
+        int bx = b % width;
+        int by = b / width;
+        return (ax == bx && Math.abs(ay - by) == 1) || (ay == by && Math.abs(ax - bx) == 1);
+    }
+
+    public static LinkedHashMap<Coordinate, Letter> getCells() {
+        LinkedHashMap<Coordinate, Letter> cells = new LinkedHashMap<Coordinate, Letter>();
+        Arrays.stream(Coordinate.values()).forEach(coordinate -> cells.put(coordinate, getRandomLetter()));
+        return cells;
+    }
+
+    private static Letter getRandomLetter() {
+        int randomIndex = random.nextInt(5);
+        return Letter.values()[randomIndex];
+    }
+
+}
