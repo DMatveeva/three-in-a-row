@@ -1,34 +1,26 @@
 package threeinarow.game;
 
+import threeinarow.graph.SearchGraph;
+import threeinarow.graph.Subgraph;
+
 import java.util.LinkedHashMap;
+import java.util.List;
 
 public class GameMatrix extends Matrix {
 
     private LinkedHashMap<Coordinate, Letter> cells;
     private int [][] adjacencyMatrix = new int [64] [64];
 
-
-
-/*
-*  | a   b   c   d   e   f   g   h |
-  |-------------------------------|
-1 | 00  01  02  03  04  05  06  07 |
-2 | 08  09  10  11  12  13  14  15 |
-3 | 16  17  18  19  20  21  22  23 |
-4 | 24   E   A   A   E   A   E   C |
-5 | 32   B   A   A   E   A   E   C |
-6 | 40   B   B   A   E   A   E   C |
-7 | 48   B   C   A   E   A   E   C |
-8 | 56  57  58 59  60  61  62  63 |
-
-* */
-
     public GameMatrix(LinkedHashMap<Coordinate, Letter> cells, int[][] adjacencyMatrix) {
         this.cells = cells;
+        this.adjacencyMatrix = adjacencyMatrix;
     }
 
     @Override
     public boolean containsFigures() {
+        SearchGraph<Letter> searchGraph = new SearchGraph<>(cells.values().toArray(new Letter[0]), adjacencyMatrix);
+        List<Subgraph> subgraphs = searchGraph.getSubgraphs();
+
         return false;
     }
 
