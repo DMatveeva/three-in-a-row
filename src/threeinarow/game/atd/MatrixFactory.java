@@ -1,4 +1,7 @@
-package threeinarow.game;
+package threeinarow.game.atd;
+
+import threeinarow.game.realization.Coordinate;
+import threeinarow.game.realization.Letter;
 
 import java.util.Arrays;
 import java.util.LinkedHashMap;

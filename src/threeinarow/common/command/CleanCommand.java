@@ -1,6 +1,6 @@
 package threeinarow.common.command;
 
-import threeinarow.game.Figures;
+import threeinarow.game.realization.Figures;
 
 public class CleanCommand extends Command {
 

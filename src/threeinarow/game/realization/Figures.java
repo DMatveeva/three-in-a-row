@@ -1,4 +1,4 @@
-package threeinarow.game;
+package threeinarow.game.realization;
 
 /**
  * Класс реализации, оборачивает список фигур

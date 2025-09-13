@@ -1,11 +1,7 @@
 package threeinarow;
 
-import threeinarow.common.command.CleanCommand;
-import threeinarow.common.command.FillCommand;
-import threeinarow.common.command.SwapCommand;
-import threeinarow.game.Figures;
-import threeinarow.game.Matrix;
-import threeinarow.game.MatrixFactory;
+import threeinarow.game.atd.Matrix;
+import threeinarow.game.atd.MatrixFactory;
 
 import java.util.Scanner;
 

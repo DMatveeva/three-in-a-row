@@ -1,5 +1,9 @@
-package threeinarow.game;
+package threeinarow.game.atd;
 
+
+import threeinarow.game.realization.Coordinate;
+import threeinarow.game.realization.Figures;
+import threeinarow.game.realization.UIMatrixCells;
 
 /**
  * АТД
@@ -13,6 +17,8 @@ public abstract class Matrix {
 
     //предусловие: матрица непустая
     public abstract Figures getFigures();
+
+    public abstract UIMatrixCells getCellsForUI();
 
     //команды
 

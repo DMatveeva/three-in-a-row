@@ -1,6 +1,6 @@
 package threeinarow.common.command;
 
-import threeinarow.game.Coordinate;
+import threeinarow.game.realization.Coordinate;
 
 public class SwapCommand extends Command {
 
