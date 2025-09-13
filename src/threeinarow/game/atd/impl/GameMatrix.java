@@ -1,19 +1,16 @@
-package threeinarow.game.atd;
+package threeinarow.game.atd.impl;
 
-import threeinarow.game.realization.Coordinate;
-import threeinarow.game.realization.Figures;
-import threeinarow.game.realization.Letter;
+import threeinarow.game.atd.Matrix;
+import threeinarow.game.realization.*;
 
 import java.util.LinkedHashMap;
 
 public class GameMatrix extends Matrix {
 
-    private LinkedHashMap<Coordinate, Letter> cells;
-    private int [][] adjacencyMatrix = new int [64] [64];
 
-    public GameMatrix(LinkedHashMap<Coordinate, Letter> cells, int[][] adjacencyMatrix) {
-        this.cells = cells;
-        this.adjacencyMatrix = adjacencyMatrix;
+
+    public GameMatrix(GameCells cells, AdjacencyMatrix adjacencyMatrix) {
+
     }
 
     @Override
@@ -24,6 +21,11 @@ public class GameMatrix extends Matrix {
 
     @Override
     public Figures getFigures() {
+        return null;
+    }
+
+    @Override
+    public UIMatrixCells getCellsForUI() {
         return null;
     }
 

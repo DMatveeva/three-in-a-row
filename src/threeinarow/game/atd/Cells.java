@@ -1,33 +1,31 @@
 package threeinarow.game.atd;
 
-import threeinarow.game.realization.AbstractCell;
+import threeinarow.game.realization.Cell;
 import threeinarow.game.realization.Coordinate;
 import threeinarow.game.realization.UIMatrixCells;
 
-import java.util.LinkedHashMap;
 import java.util.List;
 
-public class GameCells extends MatrixCells {
+public abstract class Cells {
 
-    private LinkedHashMap<Coordinate, AbstractCell> cells;
+    public Cells() {
 
-    GameCells(List<AbstractCell> cells) {
-        super(cells);
     }
 
     //запросы
-    public AbstractCell getByCoordinate(Coordinate coordinate);
+    public abstract Cell getByCoordinate(Coordinate coordinate);
 
+    public abstract UIMatrixCells forUI();
 
     //команды
 
     //предусловие: other != this
     //постусловие: значение в узлах поменялись местами
-    public void swapValues(Coordinate from, Coordinate to);
+    public abstract void swapValues(Coordinate from, Coordinate to);
 
     //предусловие: в хранилище есть ключ = key
-    public void updateCellValue(Coordinate key, AbstractCell value);
+    public abstract void updateCellValue(Coordinate key, Cell value);
 
     //предусловие: в хранилище есть ключ = key
-    public void emptyCell(Coordinate key);
+    public abstract void emptyCell(Coordinate key);
 }

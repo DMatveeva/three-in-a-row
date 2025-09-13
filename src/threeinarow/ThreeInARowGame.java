@@ -2,17 +2,32 @@ package threeinarow;
 
 import threeinarow.game.atd.Matrix;
 import threeinarow.game.atd.MatrixFactory;
+import threeinarow.game.atd.impl.GameMatrixFactory;
 
 import java.util.Scanner;
 
-public class Game {
 
-    public static final Game INSTANCE = new Game();
+/**
+ * АТД
+ */
+public class ThreeInARowGame {
+
+    public static final ThreeInARowGame INSTANCE = new ThreeInARowGame();
+
+    private ThreeInARowGame() {
+        // init params
+    }
+
+    public static ThreeInARowGame getInstance() {
+        return INSTANCE;
+    }
+
 
     private static boolean gameOn;
 
-    public static void play() {
-        Matrix matrix = MatrixFactory.create();
+    public void play() {
+        GameMatrixFactory factory = GameMatrixFactory.getInstance();
+        Matrix matrix = factory.createMatrix();
 
         while (gameOn) {
             play(matrix);
@@ -22,7 +37,7 @@ public class Game {
         System.out.println("Game over");
     }
 
-    private static void play(Matrix matrix) {
+    private void play(Matrix matrix) {
         Scanner input = new Scanner(System.in);
         String s = input.nextLine();
 
