@@ -34,7 +34,7 @@ public class ObservableMatrix extends Matrix {
     }
 
     @Override
-    public UIMatrixCells getViewForUI() {
+    public String getViewForUI() {
         return gameMatrix.getViewForUI();
     }
 
