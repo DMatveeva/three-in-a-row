@@ -10,6 +10,8 @@ public class GameMatrix extends Matrix {
     AdjacencyMatrix adjacencyMatrix;
 
     public GameMatrix(GameCells cells, AdjacencyMatrix adjacencyMatrix) {
+        this.cells = cells;
+        this.adjacencyMatrix = adjacencyMatrix;
 
     }
 

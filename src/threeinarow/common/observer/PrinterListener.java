@@ -1,7 +1,6 @@
 package threeinarow.common.observer;
 
 import threeinarow.matrix.atd.Matrix;
-import threeinarow.matrix.realization.UIMatrixCells;
 
 public class PrinterListener implements Listener {
 
