@@ -13,7 +13,7 @@ import java.util.Scanner;
 
 import static threeinarow.matrix.realization.GameConstants.COORDINATE_INPUT_PATTERN;
 
-public class Game extends GameWithHistory {
+public abstract class Game extends GameWithHistory {
 
     //   private final Matrix matrix;
 //    private final CommandHistory commandHistory;
