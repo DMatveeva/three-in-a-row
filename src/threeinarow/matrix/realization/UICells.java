@@ -24,6 +24,6 @@ public class UICells {
 
     private String getUiRow(int i) {
         String s = String.join(UI_CELL_DELIMETER, uiCells[i]);
-        return String.join(UI_INDENT, String.valueOf(i + 1), "|", s, "|", "\n");
+        return String.join(UI_INDENT, String.valueOf(i), "|", s, "|", "\n");
     }
 }
