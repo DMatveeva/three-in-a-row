@@ -3,10 +3,7 @@ package threeinarow.matrix.atd.impl.factory;
 import threeinarow.matrix.atd.MatrixFactory;
 import threeinarow.matrix.atd.impl.GameCells;
 import threeinarow.matrix.atd.impl.GameMatrix;
-import threeinarow.matrix.realization.AdjacencyMatrix;
-import threeinarow.matrix.realization.Cell;
-import threeinarow.matrix.realization.Coordinate;
-import threeinarow.matrix.realization.Letter;
+import threeinarow.matrix.realization.*;
 
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -20,7 +17,6 @@ public class GameMatrixFactory extends MatrixFactory {
         return INSTANCE;
     }
 
-
     private final static Random random = new Random();
 
     @Override
@@ -31,12 +27,12 @@ public class GameMatrixFactory extends MatrixFactory {
     }
 
     private GameCells createMatrixCells() {
-        LinkedHashMap<Coordinate, Cell> map = new LinkedHashMap<>();
-        for(Coordinate c: Coordinate.values()) {
-            Cell cell = new Cell(getRandomLetter());
-            map.put(c, cell);
-        }
-
+        LinkedHashMap<CartesianCoordinate, Cell> map = new LinkedHashMap<>();
+        for (Coordinate x: Coordinate.values()) {
+            for (Coordinate y: Coordinate.values()) {
+                map.put(new CartesianCoordinate(x, y), new Cell(getRandomLetter()));
+            }
+        } //TODO
         return new GameCells(map);
     }
 
@@ -51,7 +47,7 @@ public class GameMatrixFactory extends MatrixFactory {
     }
 
     private static int[][] getAdjacencyMatrix() {
-        int size = Coordinate.getCount();
+        int size = CartesianCoordinate.getCount();
         int [][] adjacencyMatrix = new int[size][size];
 
         for (int i = 0; i < size; i++) {
@@ -65,7 +61,7 @@ public class GameMatrixFactory extends MatrixFactory {
     }
 
     private static boolean areNeighbors(int a, int b) {
-        int width = Coordinate.getMaxWidth();
+        int width = CartesianCoordinate.getMaxWidth();
         int ax = a % width;  //0 ...7
         int ay = a / width;  //0 ...7
         int bx = b % width;

@@ -1,17 +1,5 @@
 package threeinarow.game;
 
-import threeinarow.common.command.Command;
-import threeinarow.common.command.CommandFactory;
-import threeinarow.common.command.CommandHistory;
-import threeinarow.matrix.atd.Matrix;
-import threeinarow.matrix.atd.impl.factory.GameMatrixFactory;
-import threeinarow.matrix.realization.Coordinate;
-import threeinarow.matrix.realization.Figures;
-
-import java.util.Scanner;
-
-import static threeinarow.matrix.realization.GameConstants.COORDINATE_INPUT_PATTERN;
-
 
 /**
  * АТД

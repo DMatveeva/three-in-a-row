@@ -6,8 +6,10 @@ import threeinarow.matrix.realization.*;
 
 public class GameMatrix extends Matrix {
 
-    Cells cells;
-    AdjacencyMatrix adjacencyMatrix;
+    private Cells cells;
+    private AdjacencyMatrix adjacencyMatrix;
+
+    private int swapStatus;
 
     public GameMatrix(GameCells cells, AdjacencyMatrix adjacencyMatrix) {
         this.cells = cells;
@@ -37,8 +39,17 @@ public class GameMatrix extends Matrix {
     }
 
     @Override
-    public void swapCells(Coordinate from, Coordinate to) {
-
+    public void swapCells(CartesianCoordinate from, CartesianCoordinate to) {
+        boolean areNeighbours = from.isNeighbour(to);
+        if(!areNeighbours) {
+            swapCellStatus = SWAP_CELL_STATUS_ERR;
+            return;
+        }
+        Cell fromCell = cells.getByCoordinate(from);
+        Cell toCell = cells.getByCoordinate(to);
+        cells.updateCellValue(from, toCell);
+        cells.updateCellValue(to, fromCell);
+        swapCellStatus = SWAP_CELL_STATUS_OK;
     }
 
     @Override
@@ -49,5 +60,7 @@ public class GameMatrix extends Matrix {
     public void clear() {
 
     }
+
+    //status
 }
 

@@ -6,9 +6,8 @@ import threeinarow.common.observer.EventManager;
 import threeinarow.common.observer.OperationType;
 import threeinarow.matrix.atd.Matrix;
 import threeinarow.matrix.atd.impl.factory.GameMatrixFactory;
-import threeinarow.matrix.realization.Coordinate;
+import threeinarow.matrix.realization.CartesianCoordinate;
 import threeinarow.matrix.realization.Figures;
-import threeinarow.matrix.realization.UIMatrixCells;
 
 public class ObservableMatrix extends Matrix {
 
@@ -45,7 +44,7 @@ public class ObservableMatrix extends Matrix {
     }
 
     @Override
-    public void swapCells(Coordinate from, Coordinate to) {
+    public void swapCells(CartesianCoordinate from, CartesianCoordinate to) {
         gameMatrix.swapCells(from, to);
         eventManager.notify(OperationType.PRINT, gameMatrix);
     }

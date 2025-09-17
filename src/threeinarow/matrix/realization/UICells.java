@@ -4,10 +4,10 @@ package threeinarow.matrix.realization;
 import static threeinarow.matrix.realization.GameConstants.UI_CELL_DELIMETER;
 import static threeinarow.matrix.realization.GameConstants.UI_INDENT;
 
-public class UIMatrixCells {
+public class UICells {
     String[][] uiCells;
 
-    public UIMatrixCells(String[][] uiCells) {
+    public UICells(String[][] uiCells) {
         this.uiCells = uiCells;
     }
 

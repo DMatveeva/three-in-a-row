@@ -1,7 +1,7 @@
 package threeinarow.common.command;
 
 import threeinarow.matrix.atd.Matrix;
-import threeinarow.matrix.realization.Coordinate;
+import threeinarow.matrix.realization.CartesianCoordinate;
 
 public class CommandFactory {
 
@@ -11,7 +11,7 @@ public class CommandFactory {
         return INSTANCE;
     }
 
-    public SwapCommand createSwapCommand(Matrix matrix, Coordinate from, Coordinate to) {
+    public SwapCommand createSwapCommand(Matrix matrix, CartesianCoordinate from, CartesianCoordinate to) {
         return new SwapCommand();
     }
 

@@ -1,11 +1,11 @@
 package threeinarow.common.command;
 
-import threeinarow.matrix.realization.Coordinate;
+import threeinarow.matrix.realization.CartesianCoordinate;
 
 public class SwapCommand extends Command {
 
-    Coordinate from;
-    Coordinate to;
+    CartesianCoordinate from;
+    CartesianCoordinate to;
 
 
     @Override
