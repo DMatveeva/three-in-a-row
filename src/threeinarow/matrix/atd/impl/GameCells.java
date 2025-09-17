@@ -7,10 +7,10 @@ import threeinarow.matrix.realization.UICells;
 
 import java.util.LinkedHashMap;
 import java.util.List;
-
 public class GameCells extends Cells {
 
-    private LinkedHashMap<CartesianCoordinate, Cell> cells;
+    private final LinkedHashMap<CartesianCoordinate, Cell> cells;
+    private int swapValuesStatus;
 
     public GameCells(LinkedHashMap<CartesianCoordinate, Cell> cells) {
         this.cells = cells;
@@ -25,36 +25,34 @@ public class GameCells extends Cells {
     public UICells getUiRepresentation() {
         int width = CartesianCoordinate.getMaxWidth();
         String[][] uiCells = new String[width][width];
-        List<CartesianCoordinate> cartesianCoordinates = CartesianCoordinate.values(); //TODO
-        //TODO
-        for(int i = 0; i < cells.size(); i++) {
-            int x = i / width;
-            int y = i % width;
-            CartesianCoordinate c = cartesianCoordinates.get(i);
+        List<CartesianCoordinate> cartesianCoordinates = CartesianCoordinate.values();
+        for (CartesianCoordinate c: cartesianCoordinates) {
+            int x = c.getX();
+            int y = c.getY();
             Cell cell = cells.get(c);
-            uiCells[x][y] = cell.getValueForUI();
+            uiCells[y][x] = cell.getValueForUI();
         }
         return new UICells(uiCells);
     }
 
-
     //команды
-
-    //предусловие: other != this
-    //постусловие: значение в узлах поменялись местами
+    @Override
     public void swapValues(CartesianCoordinate from, CartesianCoordinate to) {
-        if(!cells.containsKey(from) || !cells.containsKey(to)) {
-
+        if(! cells.containsKey(from) || !cells.containsKey(to)) {
+            swapValuesStatus = SWAP_VALUES_STATUS_ERR;
+            return;
         }
         Cell fromCell = cells.get(from);
         Cell toCell = cells.get(to);
         cells.put(from, toCell);
         cells.put(to, fromCell);
+        swapValuesStatus = SWAP_VALUES_STATUS_OK;
     }
 
     //предусловие: в хранилище есть ключ = key
-    public void updateCellValue(CartesianCoordinate key, Cell value) {}
-
-    //предусловие: в хранилище есть ключ = key
     public void emptyCell(CartesianCoordinate key) {}
+
+    //статусы
+    @Override
+    public int getSwapValuesStatus() { return swapValuesStatus; }
 }

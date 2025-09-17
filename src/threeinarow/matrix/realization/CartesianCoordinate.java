@@ -39,6 +39,14 @@ public final class CartesianCoordinate {
         return (thisX == otherX && thisY.isNeighbour(otherY)) || (thisY == otherY && thisX.isNeighbour(otherX));
     }
 
+    public int getX() {
+        return this.x.asNum();
+    }
+
+    public int getY() {
+        return this.y.asNum();
+    }
+
     public static int getCount() {
         return getMaxWidth()^2;
     }

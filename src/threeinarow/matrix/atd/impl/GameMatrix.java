@@ -45,12 +45,14 @@ public class GameMatrix extends Matrix {
             swapCellStatus = SWAP_CELL_STATUS_ERR;
             return;
         }
-        Cell fromCell = cells.getByCoordinate(from);
-        Cell toCell = cells.getByCoordinate(to);
-        cells.updateCellValue(from, toCell);
-        cells.updateCellValue(to, fromCell);
+        cells.swapValues(from, to);
+        if(cells.getSwapValuesStatus() == Cells.SWAP_VALUES_STATUS_ERR) {
+            swapCellStatus = SWAP_CELL_STATUS_ERR;
+            return;
+        }
         swapCellStatus = SWAP_CELL_STATUS_OK;
     }
+
 
     @Override
     public void cleanFigures(Figures figures) {

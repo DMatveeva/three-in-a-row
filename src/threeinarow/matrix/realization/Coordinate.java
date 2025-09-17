@@ -39,7 +39,7 @@ public enum Coordinate {
         return thisNeighbours.contains(other);
     }
 
-    public String asNum() {
-        return String.valueOf(num);
+    public int asNum() {
+        return num;
     }
 }

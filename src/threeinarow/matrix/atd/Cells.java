@@ -22,16 +22,13 @@ public abstract class Cells {
 
     //команды
 
-    //предусловие: other != this
+    //предусловие: other != this, from, to - есть в хранилище
     //постусловие: значение в узлах поменялись местами
     public abstract void swapValues(CartesianCoordinate from, CartesianCoordinate to);
-
-    //предусловие: в хранилище есть ключ = key
-    public abstract void updateCellValue(CartesianCoordinate key, Cell value);
 
     //предусловие: в хранилище есть ключ = key
     public abstract void emptyCell(CartesianCoordinate key);
 
     //status
-    public abstract int getSwapStatus();
+    public abstract int getSwapValuesStatus();
 }
