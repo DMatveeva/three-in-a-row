@@ -8,7 +8,12 @@ import threeinarow.matrix.realization.Figures;
 public class BonusGame extends AbstractGame implements WithBonuses {
 
     private BonusAccount bonusAccount;
-    private Game game;
+    private AbstractGame game;
+
+    public BonusGame(BonusAccount bonusAccount) {
+        this.bonusAccount = bonusAccount;
+        this.game = new Game();
+    }
 
     @Override
     public Bonus getTotalBonus() {
@@ -38,6 +43,13 @@ public class BonusGame extends AbstractGame implements WithBonuses {
         bonusAccount.add(bonus);
     }
 
+    @Override
+    public int getEnterCoordinatesStatus() {
+        return game.getEnterCoordinatesStatus();
+    }
 
-
+    @Override
+    public int getExecuteRoundStatus() {
+        return game.getExecuteRoundStatus();
+    }
 }

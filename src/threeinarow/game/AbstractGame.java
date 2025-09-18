@@ -9,7 +9,8 @@ public abstract class AbstractGame {
 
     public final static int ENTER_COORDINATES_NIL = 0; //начало раунда, координаты не введены
     public final static int ENTER_COORDINATES_OK = 1; //координаты введены успешно
-    public final static int ENTER_COORDINATES_ERR = 2; //неверный формат ввода
+    public final static int ENTER_COORDINATES_PARSE_ERR = 2; //неверный формат ввода
+    public final static int ENTER_COORDINATES_SWAP_ERR = 3; //координаты не рядом
 
     public final static int EXECUTE_ROUND_OK = 1; //фигуры исчезли
     public final static int EXECUTE_ROUND_ERR = 2; //игра закончена
@@ -33,11 +34,6 @@ public abstract class AbstractGame {
     //постусловие: выполнен раунд игры: клетки поменялись, исчезли, заполнились новыми значениями пока не осталось больше фигур
     public abstract void executeRound();
 
-
-    public int getEnterCoordinatesStatus() {
-        return enterCoordinatesStatus;
-    }
-    public int getExecuteRoundStatus() {
-        return executeRoundStatus;
-    }
+    public abstract int getEnterCoordinatesStatus();
+    public abstract int getExecuteRoundStatus();
 }

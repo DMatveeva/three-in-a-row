@@ -14,8 +14,7 @@ public class ObservableMatrix extends Matrix {
     EventManager eventManager;
     GameMatrix gameMatrix;
 
-    public ObservableMatrix(GameMatrix gameMatrix, BonusAccount bonusAccount) {
-        GameMatrixFactory gameMatrixFactory = GameMatrixFactory.getInstance();
+    public ObservableMatrix(GameMatrix gameMatrix) {
         this.gameMatrix = gameMatrix;
         this.eventManager = new EventManager();
         eventManager.subscribe(OperationType.PRINT, new PrinterListener());

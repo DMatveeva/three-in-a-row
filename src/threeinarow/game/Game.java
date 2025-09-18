@@ -5,6 +5,8 @@ import threeinarow.common.command.Command;
 import threeinarow.common.command.CommandFactory;
 import threeinarow.common.command.CommandHistory;
 import threeinarow.matrix.atd.Matrix;
+import threeinarow.matrix.atd.impl.GameMatrix;
+import threeinarow.matrix.atd.impl.ObservableMatrix;
 import threeinarow.matrix.atd.impl.factory.GameMatrixFactory;
 import threeinarow.matrix.realization.CartesianCoordinate;
 import threeinarow.matrix.realization.Figures;
@@ -24,7 +26,8 @@ public class Game extends AbstractGame {
 
     protected Game() {
         GameMatrixFactory gameMatrixFactory = GameMatrixFactory.getInstance();
-        this.matrix = gameMatrixFactory.createMatrix();
+        GameMatrix gameMatrix = gameMatrixFactory.createMatrix();
+        this.matrix = new ObservableMatrix(gameMatrix);
         this.commandHistory = new CommandHistory();
     }
 
@@ -48,13 +51,19 @@ public class Game extends AbstractGame {
         String s = input.nextLine();
         boolean matches = s.matches(COORDINATE_INPUT_PATTERN);
         if (!matches) {
-            enterCoordinatesStatus = ENTER_COORDINATES_ERR;
+            enterCoordinatesStatus = ENTER_COORDINATES_PARSE_ERR;
             return;
         }
         String[] parts = s.split(" ");
         String from = parts[0];
         String to = parts[1];
-        Command swap = CommandFactory.getInstance().createSwapCommand(matrix, CartesianCoordinate.fromUI(from), CartesianCoordinate.fromUI(to));
+        CartesianCoordinate fromC = CartesianCoordinate.fromUI(from);
+        CartesianCoordinate toC = CartesianCoordinate.fromUI(to);
+        if(!fromC.isNeighbour(toC)) {
+            enterCoordinatesStatus = ENTER_COORDINATES_SWAP_ERR;
+            return;
+        }
+        Command swap = CommandFactory.getInstance().createSwapCommand(matrix, fromC, toC);
         commandHistory.push(swap);
         enterCoordinatesStatus = ENTER_COORDINATES_OK;
     }
@@ -77,5 +86,15 @@ public class Game extends AbstractGame {
             matrix.cleanFigures(figures);
             matrix.fillEmptyCells();
         }
+    }
+
+    @Override
+    public int getEnterCoordinatesStatus() {
+        return enterCoordinatesStatus;
+    }
+
+    @Override
+    public int getExecuteRoundStatus() {
+        return executeRoundStatus;
     }
 }

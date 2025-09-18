@@ -12,7 +12,7 @@ public class CommandFactory {
     }
 
     public SwapCommand createSwapCommand(Matrix matrix, CartesianCoordinate from, CartesianCoordinate to) {
-        return new SwapCommand();
+        return new SwapCommand(matrix, from, to);
     }
 
 }

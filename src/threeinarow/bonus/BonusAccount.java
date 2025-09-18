@@ -1,18 +1,35 @@
 package threeinarow.bonus;
 
+import threeinarow.game.BonusGame;
 import threeinarow.matrix.realization.Figures;
 
-public abstract class BonusAccount {
+public class BonusAccount extends AbstractBonusAccount {
 
-    // команды
-    public abstract Bonus getBonuses();
+    private final static BonusAccount INSTANCE = new BonusAccount();
 
-    public abstract Bonus calculateBonuses(Figures figures);
+    public static BonusAccount getInstance() {
+        return INSTANCE;
+    }
 
-    // запросы
+    private Bonus total = new Bonus(0);
 
-    // предусловие: bonus > zero
-    public abstract void add(Bonus bonus);
+    @Override
+    public Bonus getBonuses() {
+        return total;
+    }
 
-    public abstract void setStrategy(BonusStrategy strategy);
+    @Override
+    public Bonus calculateBonuses(Figures figures) {
+        return new Bonus(figures.getCoordinates().size());
+    }
+
+    @Override
+    public void add(Bonus bonus) {
+        this.total = total.add(bonus);
+    }
+
+    @Override
+    public void setStrategy(BonusStrategy strategy) {
+
+    }
 }
