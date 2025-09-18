@@ -1,15 +1,17 @@
 package threeinarow.matrix.realization;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class CellSlice extends AbstractFigure {
 
     Map<CartesianCoordinate, Cell> coordinateToCell;
+
     public CellSlice(LinkedHashMap<CartesianCoordinate, Cell> cells) {
-        this.coordinateToCell = Map.copyOf(cells);
+        this.coordinateToCell = Collections.unmodifiableMap(new LinkedHashMap<>(cells));
     }
 
-    public Figures getSequencedCells() {
+    public Figures getThreeInARowCells() {
 
         Collection<CartesianCoordinate> keys = coordinateToCell.keySet();
         Iterator<CartesianCoordinate> iterator = keys.iterator();
@@ -32,9 +34,13 @@ public class CellSlice extends AbstractFigure {
                 currentFigure = new Figure();
                 currentFigure.addCell(currentCoordinate, currentCell);
             }
+            prevCell = currentCell;
         } //TODO
         allFigures.add(currentFigure);
-        List<Figure> figuresBiggerThan3 = allFigures.stream().filter(f -> f.size() < 3).toList();
+        List<Figure> figuresBiggerThan3 = allFigures.stream().filter(f -> f.size() >= 3).toList();
+        if(figuresBiggerThan3.isEmpty()) {
+            return Figures.empty();
+        }
         return new Figures(figuresBiggerThan3);
 
     }
@@ -44,4 +50,23 @@ public class CellSlice extends AbstractFigure {
         return coordinateToCell.size();
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        CellSlice cellSlice = (CellSlice) o;
+        return Objects.equals(coordinateToCell, cellSlice.coordinateToCell);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(coordinateToCell);
+    }
+
+    @Override
+    public String toString() {
+        return coordinateToCell.entrySet().stream()
+                .map(entry -> String.format("%s_%s", entry.getKey(), entry.getValue()))
+                .collect(Collectors.joining(" | "));
+    }
 }

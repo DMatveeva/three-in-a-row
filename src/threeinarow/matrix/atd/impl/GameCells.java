@@ -21,21 +21,27 @@ public class GameCells extends Cells {
         return cells.get(cartesianCoordinate);
     }
 
-    public Collection<CellSlice> getRows() {
+    public List<CellSlice> getRows() { //TODO wrapper
         //aa ba ca da...
-        Collection<CellSlice> slices = new ArrayList<>();
+        List<CellSlice> slices = new ArrayList<>();
         for(Coordinate x: Coordinate.values()) {
             LinkedHashMap<CartesianCoordinate, Cell> cellSliceMap = new LinkedHashMap<>();
             for (Coordinate y: Coordinate.values()) {
-                CartesianCoordinate xy = new CartesianCoordinate(x, y);
-                Cell cell = cells.get(xy);
-                cellSliceMap.put(xy, cell);
+                CartesianCoordinate сс = new CartesianCoordinate(y, x);
+                Cell cell = cells.get(сс);
+                cellSliceMap.put(сс, cell);
             }
             CellSlice cellSlice = new CellSlice(cellSliceMap);
             slices.add(cellSlice);
         } //TODO
         return slices;
     }
+
+    @Override
+    public List<CellSlice> getColumns() {
+        return null;
+    }
+
 
 
     @Override

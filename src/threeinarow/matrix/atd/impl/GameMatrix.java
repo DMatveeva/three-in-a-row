@@ -29,7 +29,7 @@ public class GameMatrix extends Matrix {
     public Figures getFigures() {
         Collection<CellSlice> rows = cells.getRows();
         Figures rowFigures = rows.stream()
-                .map(CellSlice::getSequencedCells)
+                .map(CellSlice::getThreeInARowCells)
                 .reduce(Figures.empty(), Figures::union);
 
 

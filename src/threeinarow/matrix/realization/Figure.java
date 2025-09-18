@@ -17,6 +17,7 @@ public class Figure extends AbstractFigure {
     }
 
     public Figure() {
+        this.cells = new HashMap<>();
     }
 
     @Override
@@ -45,7 +46,7 @@ public class Figure extends AbstractFigure {
     public String toString() {
         return cells.entrySet().stream()
                 .map(entry -> String.format("%s_%s", entry.getKey(), entry.getValue()))
-                .collect(Collectors.joining(";"));
+                .collect(Collectors.joining(" | "));
     }
 
 

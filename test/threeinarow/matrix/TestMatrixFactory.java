@@ -18,6 +18,8 @@ public class TestMatrixFactory {
     public static GameCells createMatrixCells() {
         LinkedHashMap<CartesianCoordinate, Cell> map = new LinkedHashMap<>();
 
+        //x, y ; x - это
+        //это колонка (сверху вниз) a
         map.put(new CartesianCoordinate(a, a), new Cell(A));
         map.put(new CartesianCoordinate(a, b), new Cell(A));
         map.put(new CartesianCoordinate(a, c), new Cell(B));
@@ -64,7 +66,7 @@ public class TestMatrixFactory {
         map.put(new CartesianCoordinate(e, h), new Cell(A));
 
         map.put(new CartesianCoordinate(f, a), new Cell(C));
-        map.put(new CartesianCoordinate(f, b), new Cell(A));
+        map.put(new CartesianCoordinate(f, b), new Cell(D));
         map.put(new CartesianCoordinate(f, c), new Cell(C));
         map.put(new CartesianCoordinate(f, d), new Cell(C));
         map.put(new CartesianCoordinate(f, e), new Cell(E));
@@ -73,7 +75,7 @@ public class TestMatrixFactory {
         map.put(new CartesianCoordinate(f, h), new Cell(A));
 
         map.put(new CartesianCoordinate(g, a), new Cell(E));
-        map.put(new CartesianCoordinate(g, b), new Cell(B));
+        map.put(new CartesianCoordinate(g, b), new Cell(D));
         map.put(new CartesianCoordinate(g, c), new Cell(B));
         map.put(new CartesianCoordinate(g, d), new Cell(A));
         map.put(new CartesianCoordinate(g, e), new Cell(C));

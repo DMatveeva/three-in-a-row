@@ -15,6 +15,7 @@ import java.util.List;
 import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static threeinarow.matrix.Constants.*;
 import static threeinarow.matrix.realization.Coordinate.*;
 import static threeinarow.matrix.realization.Letter.*;
 //import static org.assertj.core.api.Assertions.assertThat;
@@ -22,86 +23,6 @@ import static threeinarow.matrix.realization.Letter.*;
 
 class MatrixTest {
     //GameMatrixFactory factory = GameMatrixFactory.getInstance();
-    static GameCells cells = TestMatrixFactory.createMatrixCells();
-    AdjacencyMatrix adjacencyMatrix = TestMatrixFactory.createAdjacencyMatrix();
-
-    static Cell cA = new Cell(A);
-    static Cell cB = new Cell(B);
-    static Cell cC = new Cell(C);
-    static Cell cD = new Cell(D);
-    static Cell cE = new Cell(E);
-
-   static CartesianCoordinate a0 = new CartesianCoordinate(a, a);
-   static CartesianCoordinate a1 = new CartesianCoordinate(a, b);
-   static CartesianCoordinate a2 = new CartesianCoordinate(a, c);
-   static CartesianCoordinate a3 = new CartesianCoordinate(a, d);
-   static CartesianCoordinate a4 = new CartesianCoordinate(a, e);
-   static CartesianCoordinate a5 = new CartesianCoordinate(a, f);
-   static CartesianCoordinate a6 = new CartesianCoordinate(a, g);
-   static CartesianCoordinate a7 = new CartesianCoordinate(a, h);
-
-    static CartesianCoordinate b0 = new CartesianCoordinate(b, a);
-    static CartesianCoordinate b1 = new CartesianCoordinate(b, b);
-    static CartesianCoordinate b2 = new CartesianCoordinate(b, c);
-    static CartesianCoordinate b3 = new CartesianCoordinate(b, d);
-    static CartesianCoordinate b4 = new CartesianCoordinate(b, e);
-    static CartesianCoordinate b5 = new CartesianCoordinate(b, f);
-    static CartesianCoordinate b6 = new CartesianCoordinate(b, g);
-    static CartesianCoordinate b7 = new CartesianCoordinate(b, h);
-
-    static CartesianCoordinate c0 = new CartesianCoordinate(c, a);
-    static CartesianCoordinate c1 = new CartesianCoordinate(c, b);
-    static CartesianCoordinate c2 = new CartesianCoordinate(c, c);
-    static CartesianCoordinate c3 = new CartesianCoordinate(c, d);
-    static CartesianCoordinate c4 = new CartesianCoordinate(c, e);
-    static CartesianCoordinate c5 = new CartesianCoordinate(c, f);
-    static CartesianCoordinate c6 = new CartesianCoordinate(c, g);
-    static CartesianCoordinate c7 = new CartesianCoordinate(c, h);
-
-    static CartesianCoordinate d0 = new CartesianCoordinate(d, a);
-    static CartesianCoordinate d1 = new CartesianCoordinate(d, b);
-    static CartesianCoordinate d2 = new CartesianCoordinate(d, c);
-    static CartesianCoordinate d3 = new CartesianCoordinate(d, d);
-    static CartesianCoordinate d4 = new CartesianCoordinate(d, e);
-    static CartesianCoordinate d5 = new CartesianCoordinate(d, f);
-    static CartesianCoordinate d6 = new CartesianCoordinate(d, g);
-    static CartesianCoordinate d7 = new CartesianCoordinate(d, h);
-
-    static CartesianCoordinate e0 = new CartesianCoordinate(e, a);
-    static CartesianCoordinate e1 = new CartesianCoordinate(e, b);
-    static CartesianCoordinate e2 = new CartesianCoordinate(e, c);
-    static CartesianCoordinate e3 = new CartesianCoordinate(e, d);
-    static CartesianCoordinate e4 = new CartesianCoordinate(e, e);
-    static CartesianCoordinate e5 = new CartesianCoordinate(e, f);
-    static CartesianCoordinate e6 = new CartesianCoordinate(e, g);
-    static CartesianCoordinate e7 = new CartesianCoordinate(e, h);
-
-    static CartesianCoordinate f0 = new CartesianCoordinate(f, a);
-    static CartesianCoordinate f1 = new CartesianCoordinate(f, b);
-    static CartesianCoordinate f2 = new CartesianCoordinate(f, c);
-    static CartesianCoordinate f3 = new CartesianCoordinate(f, d);
-    static CartesianCoordinate f4 = new CartesianCoordinate(f, e);
-    static CartesianCoordinate f5 = new CartesianCoordinate(f, f);
-    static CartesianCoordinate f6 = new CartesianCoordinate(f, g);
-    static CartesianCoordinate f7 = new CartesianCoordinate(f, h);
-
-    static CartesianCoordinate g0 = new CartesianCoordinate(f, a);
-    static CartesianCoordinate g1 = new CartesianCoordinate(f, b);
-    static CartesianCoordinate g2 = new CartesianCoordinate(f, c);
-    static CartesianCoordinate g3 = new CartesianCoordinate(f, d);
-    static CartesianCoordinate g4 = new CartesianCoordinate(f, e);
-    static CartesianCoordinate g5 = new CartesianCoordinate(f, f);
-    static CartesianCoordinate g6 = new CartesianCoordinate(f, g);
-    static CartesianCoordinate g7 = new CartesianCoordinate(f, h);
-
-    static CartesianCoordinate h0 = new CartesianCoordinate(h, a);
-    static CartesianCoordinate h1 = new CartesianCoordinate(h, b);
-    static CartesianCoordinate h2 = new CartesianCoordinate(h, c);
-    static CartesianCoordinate h3 = new CartesianCoordinate(h, d);
-    static CartesianCoordinate h4 = new CartesianCoordinate(h, e);
-    static CartesianCoordinate h5 = new CartesianCoordinate(h, f);
-    static CartesianCoordinate h6 = new CartesianCoordinate(h, g);
-    static CartesianCoordinate h7 = new CartesianCoordinate(h, h);
 
     @Test
     void test_createMatrix() {
