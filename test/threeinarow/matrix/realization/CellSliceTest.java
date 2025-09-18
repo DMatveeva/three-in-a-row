@@ -2,6 +2,7 @@ package threeinarow.matrix.realization;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.Collection;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Set;
@@ -16,8 +17,7 @@ class CellSliceTest {
 
     @Test
     void test_getRows() {
-        List<CellSlice> row = cells.getRows();
-        CellSlice actual = row.get(0);
+        CellSlice actual = cells.getRows().getByCoordinate(a);
 
         LinkedHashMap<CartesianCoordinate, Cell> map = new LinkedHashMap<>();
         map.put(new CartesianCoordinate(a, a), new Cell(A));
@@ -35,8 +35,8 @@ class CellSliceTest {
 
     @Test
     void test_getSequencedCells() {
-        List<CellSlice> row = cells.getRows();
-        CellSlice slice0 = row.get(0);
+        CellSlices row = cells.getRows();
+        CellSlice slice0 = row.getByCoordinate(a);
 
         Figure figure0 = new Figure();
         figure0.addCell(d0, cC);
@@ -45,7 +45,7 @@ class CellSliceTest {
         Figures figures0 = new Figures(Set.of(figure0));
         assertEquals(figures0, slice0.getThreeInARowCells());
 
-        CellSlice slice1 = row.get(1);
+        CellSlice slice1 = row.getByCoordinate(b);
         Figure figure10 = new Figure();
         figure10.addCell(a1, cA);
         figure10.addCell(b1, cA);
@@ -57,19 +57,19 @@ class CellSliceTest {
         Figures figures1 = new Figures(Set.of(figure10, figure11));
         assertEquals(figures1, slice1.getThreeInARowCells());
 
-        CellSlice slice2 = row.get(2);
+        CellSlice slice2 = row.getByCoordinate(c);
         assertEquals(Figures.empty(), slice2.getThreeInARowCells());
 
-        CellSlice slice3 = row.get(3);
+        CellSlice slice3 = row.getByCoordinate(d);
         assertEquals(Figures.empty(), slice3.getThreeInARowCells());
 
-        CellSlice slice4 = row.get(4);
+        CellSlice slice4 = row.getByCoordinate(e);
         assertEquals(Figures.empty(), slice4.getThreeInARowCells());
 
-        CellSlice slice5 = row.get(5);
+        CellSlice slice5 = row.getByCoordinate(f);
         assertEquals(Figures.empty(), slice5.getThreeInARowCells());
 
-        CellSlice slice6 = row.get(6);
+        CellSlice slice6 = row.getByCoordinate(g);
         Figure figure6 = new Figure();
         figure6.addCell(e6, cC);
         figure6.addCell(f6, cC);
@@ -78,7 +78,7 @@ class CellSliceTest {
         Figures figures6 = new Figures(Set.of(figure6));
         assertEquals(figures6, slice6.getThreeInARowCells());
 
-        CellSlice slice7 = row.get(7);
+        CellSlice slice7 = row.getByCoordinate(h);
         Figure figure7 = new Figure();
         figure7.addCell(e7, cA);
         figure7.addCell(f7, cA);

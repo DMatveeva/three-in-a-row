@@ -54,9 +54,4 @@ public class ObservableMatrix extends Matrix {
         gameMatrix.cleanFigures(figures);
         eventManager.notify(OperationType.PRINT, gameMatrix);
     }
-
-    @Override
-    public void clear() {
-        gameMatrix.clear();
-    }
 }
