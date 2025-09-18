@@ -39,18 +39,21 @@ public class ObservableMatrix extends Matrix {
     @Override
     public void fillEmptyCells() {
         gameMatrix.fillEmptyCells();
+        System.out.println("Cells are filled:");
         eventManager.notify(OperationType.PRINT, gameMatrix);
     }
 
     @Override
     public void swapCells(CartesianCoordinate from, CartesianCoordinate to) {
         gameMatrix.swapCells(from, to);
+        System.out.printf("Swap %s to %s%n", from, to);
         eventManager.notify(OperationType.PRINT, gameMatrix);
     }
 
     @Override
     public void cleanFigures(Figures figures) {
         gameMatrix.cleanFigures(figures);
+        System.out.println("Figures cleaned:");
         eventManager.notify(OperationType.PRINT, gameMatrix);
     }
 }

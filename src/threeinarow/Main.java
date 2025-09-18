@@ -16,9 +16,9 @@ public class Main {
         while (game.getExecuteRoundStatus() == EXECUTE_ROUND_OK) {
             tryEnterCoordinates(game);
             game.executeRound();
+            System.out.println(String.format("Your bonus = %s", game.getTotalBonus()));
         }
         System.out.println("Game over!");
-        System.out.println(String.format("Your bonus = %s", game.getTotalBonus()));
     }
 
 

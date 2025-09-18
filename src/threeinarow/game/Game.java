@@ -22,7 +22,8 @@ public class Game extends AbstractGame {
 
     private final Matrix matrix;
     private final CommandHistory commandHistory;
-    private Figures figures; //TODO only 2 in class!
+    private Figures figures = Figures.empty();
+    private Scanner input = new Scanner(System.in); //TODO only 2 in class!
 
     protected Game() {
         GameMatrixFactory gameMatrixFactory = GameMatrixFactory.getInstance();
@@ -47,7 +48,6 @@ public class Game extends AbstractGame {
     //команды
     @Override
     public void enterCoordinates() {
-        Scanner input = new Scanner(System.in);
         String s = input.nextLine();
         boolean matches = s.matches(COORDINATE_INPUT_PATTERN);
         if (!matches) {
@@ -82,10 +82,12 @@ public class Game extends AbstractGame {
 
         while (matrix.containsFigures()) {
             Figures figures = matrix.getFigures();
-            this.figures = figures;
+            this.figures = figures.union(this.figures);
+            System.out.println(this.figures.getCoordinates().size());
             matrix.cleanFigures(figures);
             matrix.fillEmptyCells();
         }
+        enterCoordinatesStatus = ENTER_COORDINATES_NIL;
     }
 
     @Override

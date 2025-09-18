@@ -17,6 +17,11 @@ public class EventManager {
     }
 
     public void notify(OperationType operationType, Matrix matrix) {
+        try {
+            Thread.sleep(1500);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
         Listener listener = listeners.get(operationType);
         listener.update(matrix);
     }
