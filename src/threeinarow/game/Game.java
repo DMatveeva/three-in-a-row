@@ -83,7 +83,6 @@ public class Game extends AbstractGame {
         while (matrix.containsFigures()) {
             Figures figures = matrix.getFigures();
             this.figures = figures.union(this.figures);
-            System.out.println(this.figures.getCoordinates().size());
             matrix.cleanFigures(figures);
             matrix.fillEmptyCells();
         }
