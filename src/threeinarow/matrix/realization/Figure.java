@@ -1,8 +1,6 @@
 package threeinarow.matrix.realization;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Objects;
+import java.util.*;
 import java.util.stream.Collectors;
 
 /**
@@ -27,6 +25,21 @@ public class Figure extends AbstractFigure {
 
     public void addCell(CartesianCoordinate cc, Cell cell) {
         cells.put(cc, cell);
+    }
+
+    public Figures superimpose(Figure other) {
+        Set<CartesianCoordinate> otherKeys = other.cells.keySet();
+        Set<CartesianCoordinate> thisKeys = this.cells.keySet();
+        boolean intersect = otherKeys.stream()
+                .anyMatch(thisKeys::contains);
+        if(intersect) {
+            HashMap<CartesianCoordinate, Cell> newCells = new HashMap<>();
+            newCells.putAll(this.cells);
+            newCells.putAll(other.cells);
+            Figure newFigure = new Figure(newCells);
+            return new Figures(List.of(newFigure));
+        }
+        return new Figures(List.of(this, other));
     }
 
     @Override

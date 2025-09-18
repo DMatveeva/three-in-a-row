@@ -2,21 +2,21 @@ package threeinarow.matrix.atd.impl;
 
 import threeinarow.matrix.atd.Cells;
 import threeinarow.matrix.atd.Matrix;
-import threeinarow.matrix.realization.*;
-
-import java.util.Collection;
+import threeinarow.matrix.realization.AdjacencyMatrix;
+import threeinarow.matrix.realization.CartesianCoordinate;
+import threeinarow.matrix.realization.CellSlice;
+import threeinarow.matrix.realization.Figures;
 
 public class GameMatrix extends Matrix {
 
-    private Cells cells;
-    private AdjacencyMatrix adjacencyMatrix;
+    private final Cells cells;
+  //  private AdjacencyMatrix adjacencyMatrix;
 
     private int swapStatus;
 
     public GameMatrix(GameCells cells, AdjacencyMatrix adjacencyMatrix) {
         this.cells = cells;
-        this.adjacencyMatrix = adjacencyMatrix;
-
+   //     this.adjacencyMatrix = adjacencyMatrix;
     }
 
     @Override
@@ -26,14 +26,16 @@ public class GameMatrix extends Matrix {
     }
 
     @Override
-    public Figures getFigures() {
-        Collection<CellSlice> rows = cells.getRows();
-        Figures rowFigures = rows.stream()
+    public Figures getFigures() { //TODO remove duplicate
+        Figures rowFigures = cells.getRows().stream()
                 .map(CellSlice::getThreeInARowCells)
                 .reduce(Figures.empty(), Figures::union);
 
+        Figures columnFigures = cells.getColumns().stream()
+                .map(CellSlice::getThreeInARowCells)
+                .reduce(Figures.empty(), Figures::union);
 
-        return null;
+        return rowFigures.superimpose(columnFigures);
     }
 
     @Override
@@ -48,12 +50,12 @@ public class GameMatrix extends Matrix {
     @Override
     public void swapCells(CartesianCoordinate from, CartesianCoordinate to) {
         boolean areNeighbours = from.isNeighbour(to);
-        if(!areNeighbours) {
+        if (!areNeighbours) {
             swapCellStatus = SWAP_CELL_STATUS_ERR;
             return;
         }
         cells.swapValues(from, to);
-        if(cells.getSwapValuesStatus() == Cells.SWAP_VALUES_STATUS_ERR) {
+        if (cells.getSwapValuesStatus() == Cells.SWAP_VALUES_STATUS_ERR) {
             swapCellStatus = SWAP_CELL_STATUS_ERR;
             return;
         }

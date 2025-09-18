@@ -102,17 +102,6 @@ class MatrixTest {
         assertEquals(expected, figures);
 
     }
-}
 
-/*
-   | a  b  c  d  e  f  g  h |
----|------------------------|
-a0 | B  A  D  C  C  C  E  D |
-b1 | A  A  A  C  C  A  B  D |
-c2 | A  C  D  B  A  C  B  B |
-d3 | B  C  E  A  D  C  A  C |
-e4 | C  A  A  B  D  E  C  B |
-f5 | D  C  E  A  A  E  A  D |
-g6 | E  A  A  B  C  C  C  C |
-h7 | A  A  C  C  A  A  A  A |
---|------------------------|*/
+
+}

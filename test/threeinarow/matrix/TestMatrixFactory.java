@@ -58,7 +58,7 @@ public class TestMatrixFactory {
 
         map.put(new CartesianCoordinate(e, a), new Cell(C));
         map.put(new CartesianCoordinate(e, b), new Cell(C));
-        map.put(new CartesianCoordinate(e, c), new Cell(A));
+        map.put(new CartesianCoordinate(e, c), new Cell(C));
         map.put(new CartesianCoordinate(e, d), new Cell(D));
         map.put(new CartesianCoordinate(e, e), new Cell(D));
         map.put(new CartesianCoordinate(e, f), new Cell(A));

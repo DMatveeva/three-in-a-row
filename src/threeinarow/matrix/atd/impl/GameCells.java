@@ -27,9 +27,9 @@ public class GameCells extends Cells {
         for(Coordinate x: Coordinate.values()) {
             LinkedHashMap<CartesianCoordinate, Cell> cellSliceMap = new LinkedHashMap<>();
             for (Coordinate y: Coordinate.values()) {
-                CartesianCoordinate сс = new CartesianCoordinate(y, x);
-                Cell cell = cells.get(сс);
-                cellSliceMap.put(сс, cell);
+                CartesianCoordinate c = new CartesianCoordinate(y, x);
+                Cell cell = cells.get(c);
+                cellSliceMap.put(c, cell);
             }
             CellSlice cellSlice = new CellSlice(cellSliceMap);
             slices.add(cellSlice);
@@ -39,9 +39,19 @@ public class GameCells extends Cells {
 
     @Override
     public List<CellSlice> getColumns() {
-        return null;
+        List<CellSlice> slices = new ArrayList<>();
+        for(Coordinate x: Coordinate.values()) {
+            LinkedHashMap<CartesianCoordinate, Cell> cellSliceMap = new LinkedHashMap<>();
+            for (Coordinate y: Coordinate.values()) {
+                CartesianCoordinate c = new CartesianCoordinate(x, y);
+                Cell cell = cells.get(c);
+                cellSliceMap.put(c, cell);
+            }
+            CellSlice cellSlice = new CellSlice(cellSliceMap);
+            slices.add(cellSlice);
+        } //TODO delete duplicate
+        return slices;
     }
-
 
 
     @Override

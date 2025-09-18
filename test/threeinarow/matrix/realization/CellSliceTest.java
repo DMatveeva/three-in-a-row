@@ -27,7 +27,6 @@ class CellSliceTest {
         map.put(new CartesianCoordinate(f, a), new Cell(C));
         map.put(new CartesianCoordinate(g, a), new Cell(E));
         map.put(new CartesianCoordinate(h, a), new Cell(D));
-        map.put(new CartesianCoordinate(h, a), new Cell(E));
         CellSlice expected = new CellSlice(map);
 
         assertEquals(expected, actual);

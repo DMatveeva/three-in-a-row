@@ -3,6 +3,7 @@ package threeinarow.matrix.realization;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 /**
@@ -27,13 +28,15 @@ public class Figures {
         return new Figures(newFigures);
     }
 
-//    public Figures superimpose(Figures other) {
-//
-//    }
-
-//    public void add(Figure figure) {
-//        figures.add(figure);
-//    }
+    public Figures superimpose(Figures other) {
+        List<Figure> thisFigures = this.figures;
+        List<Figure> otherFigures = other.figures;
+        return thisFigures.stream()
+                .flatMap(f ->
+                        otherFigures.stream()
+                                .map(o -> o.superimpose(f)))
+                .reduce(Figures.empty(), Figures::union);
+    }
 
     @Override
     public boolean equals(Object o) {
