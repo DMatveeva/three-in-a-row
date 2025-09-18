@@ -1,8 +1,8 @@
 package threeinarow.matrix.atd;
 
-import threeinarow.matrix.realization.Cell;
-import threeinarow.matrix.realization.CartesianCoordinate;
-import threeinarow.matrix.realization.UICells;
+import threeinarow.matrix.realization.*;
+
+import java.util.Collection;
 
 public abstract class Cells {
 
@@ -19,6 +19,11 @@ public abstract class Cells {
     public abstract Cell getByCoordinate(CartesianCoordinate cartesianCoordinate);
 
     public abstract UICells getUiRepresentation();
+
+    public abstract Collection<CellSlice> getRows();
+
+    public abstract Collection<CellSlice> getColumns();
+
 
     //команды
 

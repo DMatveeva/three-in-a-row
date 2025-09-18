@@ -4,6 +4,8 @@ import threeinarow.matrix.atd.Cells;
 import threeinarow.matrix.atd.Matrix;
 import threeinarow.matrix.realization.*;
 
+import java.util.Collection;
+
 public class GameMatrix extends Matrix {
 
     private Cells cells;
@@ -25,6 +27,12 @@ public class GameMatrix extends Matrix {
 
     @Override
     public Figures getFigures() {
+        Collection<CellSlice> rows = cells.getRows();
+        Figures rowFigures = rows.stream()
+                .map(CellSlice::getSequencedCells)
+                .reduce(Figures.empty(), Figures::union);
+
+
         return null;
     }
 
@@ -35,7 +43,6 @@ public class GameMatrix extends Matrix {
 
     @Override
     public void fillEmptyCells() {
-
     }
 
     @Override

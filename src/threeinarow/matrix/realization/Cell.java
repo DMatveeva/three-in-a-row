@@ -16,14 +16,6 @@ public final class Cell {
         return value == Letter.O;
     }
 
-    public boolean equals(Cell other) {
-        return this.value == other.value;
-    }
-
-    public int hashcode() {
-        return value.hashCode();
-    }
-
     public boolean isHit() {
         return hit;
     }
