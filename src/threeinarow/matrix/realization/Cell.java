@@ -21,7 +21,7 @@ public final class Cell {
     }
 
     public String getValueForUI() {
-        return value.name();
+        return value.getUiName();
     }
 
     @Override

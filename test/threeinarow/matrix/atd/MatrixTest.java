@@ -112,5 +112,25 @@ class MatrixTest {
 
     }
 
+    @Test
+    void test_cleanFigures() {
+        Matrix matrix = new GameMatrix(cells, adjacencyMatrix);
+        Figures figures = matrix.getFigures();
+        matrix.cleanFigures(figures);
+        Set<CartesianCoordinate> coordinates = figures.getCoordinates();
+        for(CartesianCoordinate c: coordinates) {
+            assertEquals(new Cell(Letter.O), cells.getByCoordinate(c));
+        }
+        System.out.println(matrix.getViewForUI());
+    }
+
+    @Test
+    void test_fillEmptyCells() {
+        Matrix matrix = new GameMatrix(cells, adjacencyMatrix);
+        Figures figures = matrix.getFigures();
+        matrix.cleanFigures(figures);
+        matrix.fillEmptyCells();
+        System.out.println(matrix.getViewForUI());
+    }
 
 }
