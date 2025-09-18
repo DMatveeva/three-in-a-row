@@ -3,7 +3,7 @@ package threeinarow.matrix.realization;
 import java.util.EnumMap;
 import java.util.List;
 
-public enum Coordinate {
+public enum Coordinate implements Comparable<Coordinate> {
     a(0),
     b(1),
     c(2),

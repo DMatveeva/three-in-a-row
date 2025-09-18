@@ -1,8 +1,6 @@
 package threeinarow.matrix.realization;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
@@ -11,31 +9,48 @@ import java.util.stream.Collectors;
  */
 public class Figures {
 
-    private List<Figure> figures;
+    private Set<Figure> figures;
 
-    public Figures(List<Figure> figures) {
-        this.figures = List.copyOf(figures);
+    public Figures(Set<Figure> figures) {
+        this.figures = Set.copyOf(figures);
     }
 
     public static Figures empty() {
-        return new Figures(List.of());
+        return new Figures(Set.of());
     }
 
     public Figures union(Figures other) {
-        List<Figure> newFigures = new ArrayList<>();
+        Set<Figure> newFigures = new HashSet<>();
         newFigures.addAll(this.figures);
         newFigures.addAll(other.figures);
         return new Figures(newFigures);
     }
 
     public Figures superimpose(Figures other) {
-        List<Figure> thisFigures = this.figures;
-        List<Figure> otherFigures = other.figures;
-        return thisFigures.stream()
-                .flatMap(f ->
-                        otherFigures.stream()
-                                .map(o -> o.superimpose(f)))
-                .reduce(Figures.empty(), Figures::union);
+        Set<Figure> thisFigures = new HashSet<>(this.figures);
+        Set<Figure> otherFigures = new HashSet<>(other.figures);
+        Set<Figure> newFigures = new HashSet<>();
+
+        List<Figure> superimposedFigures = new ArrayList<>();
+
+
+        //TODO!!!
+        for (Figure f: thisFigures) {
+            for (Figure o: otherFigures) {
+                if(f.intersects(o)) {
+                    Figure newFigure = f.superimpose(o);
+                    newFigures.add(newFigure);
+                    superimposedFigures.add(f);
+                    superimposedFigures.add(o);
+                }
+            }
+        }
+        superimposedFigures.forEach(thisFigures::remove);
+        superimposedFigures.forEach(otherFigures::remove);
+        newFigures.addAll(thisFigures);
+        newFigures.addAll(otherFigures);
+        return new Figures(newFigures);
+
     }
 
     @Override
@@ -55,6 +70,7 @@ public class Figures {
     public String toString() {
         return figures.stream()
                 .map(Figure::toString)
+                .sorted()
                 .collect(Collectors.joining("\n"));
     }
 }

@@ -12,6 +12,7 @@ import threeinarow.matrix.realization.*;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -74,6 +75,8 @@ class MatrixTest {
         cells1.put(d0, cC);
         cells1.put(e0, cC);
         cells1.put(f0, cC);
+        cells1.put(e1, cC);
+        cells1.put(e2, cC);
         Figure figure1 = new Figure(cells1);
 
         HashMap<CartesianCoordinate, Cell> cells2 = new HashMap<>();
@@ -96,10 +99,16 @@ class MatrixTest {
         cells4.put(h7, cA);
         Figure figure4 = new Figure(cells4);
 
-        Figures expected = new Figures(List.of(figure1, figure2, figure3, figure4));
+        HashMap<CartesianCoordinate, Cell> cells5 = new HashMap<>();
+        cells5.put(f1, cD);
+        cells5.put(g1, cD);
+        cells5.put(h1, cD);
+        Figure figure5 = new Figure(cells5);
+
+        Figures expected = new Figures(Set.of(figure1, figure2, figure5, figure4, figure3));
 
         Figures figures = matrix.getFigures();
-        assertEquals(expected, figures);
+        assertEquals(expected.toString(), figures.toString());
 
     }
 

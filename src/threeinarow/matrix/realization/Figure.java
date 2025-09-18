@@ -3,6 +3,8 @@ package threeinarow.matrix.realization;
 import java.util.*;
 import java.util.stream.Collectors;
 
+import static java.awt.geom.Rectangle2D.intersect;
+
 /**
  * Срез части Cells
  */
@@ -27,19 +29,22 @@ public class Figure extends AbstractFigure {
         cells.put(cc, cell);
     }
 
-    public Figures superimpose(Figure other) {
+    public boolean intersects(Figure other) {
         Set<CartesianCoordinate> otherKeys = other.cells.keySet();
         Set<CartesianCoordinate> thisKeys = this.cells.keySet();
-        boolean intersect = otherKeys.stream()
+        return otherKeys.stream()
                 .anyMatch(thisKeys::contains);
-        if(intersect) {
+    }
+
+    public Figure superimpose(Figure other) {
+
+        if(this.intersects(other)) {
             HashMap<CartesianCoordinate, Cell> newCells = new HashMap<>();
             newCells.putAll(this.cells);
             newCells.putAll(other.cells);
-            Figure newFigure = new Figure(newCells);
-            return new Figures(List.of(newFigure));
+            return new Figure(newCells);
         }
-        return new Figures(List.of(this, other));
+        return this;
     }
 
     @Override
@@ -57,7 +62,7 @@ public class Figure extends AbstractFigure {
 
     @Override
     public String toString() {
-        return cells.entrySet().stream()
+        return cells.entrySet().stream().sorted(Map.Entry.comparingByKey())
                 .map(entry -> String.format("%s_%s", entry.getKey(), entry.getValue()))
                 .collect(Collectors.joining(" | "));
     }

@@ -16,7 +16,7 @@ public class CellSlice extends AbstractFigure {
         Collection<CartesianCoordinate> keys = coordinateToCell.keySet();
         Iterator<CartesianCoordinate> iterator = keys.iterator();
 
-        List<Figure> allFigures = new ArrayList<>();
+        Set<Figure> allFigures = new HashSet<>();
         Figure currentFigure = new Figure();
 
         CartesianCoordinate prevCoordinate = iterator.next();
@@ -37,7 +37,7 @@ public class CellSlice extends AbstractFigure {
             prevCell = currentCell;
         } //TODO
         allFigures.add(currentFigure);
-        List<Figure> figuresBiggerThan3 = allFigures.stream().filter(f -> f.size() >= 3).toList();
+        Set<Figure> figuresBiggerThan3 = allFigures.stream().filter(f -> f.size() >= 3).collect(Collectors.toSet());
         if(figuresBiggerThan3.isEmpty()) {
             return Figures.empty();
         }

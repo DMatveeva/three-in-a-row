@@ -7,7 +7,7 @@ import java.util.Objects;
 /**
  * Класс реализации
  */
-public final class CartesianCoordinate {
+public final class CartesianCoordinate implements Comparable<CartesianCoordinate> {
 
     private final Coordinate x;
     private final Coordinate y;
@@ -72,5 +72,15 @@ public final class CartesianCoordinate {
     public String toString() {
         return String.format("%s%s", x.name(), y.asNum());
     }
+
+    @Override
+    public int compareTo(CartesianCoordinate other) {
+        int cmp = this.x.compareTo(other.x);
+        if (cmp != 0) {
+            return cmp;
+        }
+        return this.y.compareTo(other.y);
+    }
+
 }
 
