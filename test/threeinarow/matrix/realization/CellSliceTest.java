@@ -1,16 +1,12 @@
 package threeinarow.matrix.realization;
 
 import org.junit.jupiter.api.Test;
-import threeinarow.matrix.atd.Matrix;
-import threeinarow.matrix.atd.impl.GameMatrix;
 
-import java.util.Collection;
 import java.util.LinkedHashMap;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static threeinarow.matrix.Constants.*;
-import static threeinarow.matrix.Constants.adjacencyMatrix;
 import static threeinarow.matrix.realization.Coordinate.*;
 import static threeinarow.matrix.realization.Letter.*;
 import static threeinarow.matrix.realization.Letter.A;
@@ -61,8 +57,35 @@ class CellSliceTest {
         Figures figures1 = new Figures(List.of(figure10, figure11));
         assertEquals(figures1, slice1.getThreeInARowCells());
 
+        CellSlice slice2 = row.get(2);
+        assertEquals(Figures.empty(), slice2.getThreeInARowCells());
 
+        CellSlice slice3 = row.get(3);
+        assertEquals(Figures.empty(), slice3.getThreeInARowCells());
 
+        CellSlice slice4 = row.get(4);
+        assertEquals(Figures.empty(), slice4.getThreeInARowCells());
+
+        CellSlice slice5 = row.get(5);
+        assertEquals(Figures.empty(), slice5.getThreeInARowCells());
+
+        CellSlice slice6 = row.get(6);
+        Figure figure6 = new Figure();
+        figure6.addCell(e6, cC);
+        figure6.addCell(f6, cC);
+        figure6.addCell(g6, cC);
+        figure6.addCell(h6, cC);
+        Figures figures6 = new Figures(List.of(figure6));
+        assertEquals(figures6, slice6.getThreeInARowCells());
+
+        CellSlice slice7 = row.get(7);
+        Figure figure7 = new Figure();
+        figure7.addCell(e7, cA);
+        figure7.addCell(f7, cA);
+        figure7.addCell(g7, cA);
+        figure7.addCell(h7, cA);
+        Figures figures7 = new Figures(List.of(figure7));
+        assertEquals(figures7, slice7.getThreeInARowCells());
     }
 
 }
