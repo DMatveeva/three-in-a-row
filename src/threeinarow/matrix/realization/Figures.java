@@ -19,6 +19,16 @@ public class Figures {
         return new Figures(Set.of());
     }
 
+    public boolean isEmpty() {
+        return Figures.empty().equals(this);
+    }
+
+    public Set<CartesianCoordinate> getCoordinates() {
+        return figures.stream()
+                .flatMap(f -> f.getCoordinates().stream())
+                .collect(Collectors.toSet());
+    }
+
     public Figures union(Figures other) {
         Set<Figure> newFigures = new HashSet<>();
         newFigures.addAll(this.figures);
@@ -32,7 +42,6 @@ public class Figures {
         Set<Figure> newFigures = new HashSet<>();
 
         List<Figure> superimposedFigures = new ArrayList<>();
-
 
         //TODO!!!
         for (Figure f: thisFigures) {
@@ -50,7 +59,6 @@ public class Figures {
         newFigures.addAll(thisFigures);
         newFigures.addAll(otherFigures);
         return new Figures(newFigures);
-
     }
 
     @Override

@@ -20,9 +20,9 @@ public abstract class Cells {
 
     public abstract UICells getUiRepresentation();
 
-    public abstract Collection<CellSlice> getRows();
+    public abstract CellSlices getRows();
 
-    public abstract Collection<CellSlice> getColumns();
+    public abstract CellSlices getColumns();
 
 
     //команды
@@ -33,6 +33,8 @@ public abstract class Cells {
 
     //предусловие: в хранилище есть ключ = key
     public abstract void emptyCell(CartesianCoordinate key);
+
+    public abstract void fillEmptyCellsForColumn(Coordinate x, CellSlice slice);
 
     //status
     public abstract int getSwapValuesStatus();

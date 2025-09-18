@@ -21,9 +21,9 @@ public class GameCells extends Cells {
         return cells.get(cartesianCoordinate);
     }
 
-    public List<CellSlice> getRows() { //TODO wrapper
+    public CellSlices getRows() { //TODO wrapper
         //aa ba ca da...
-        List<CellSlice> slices = new ArrayList<>();
+        CellSlices slices = new CellSlices();
         for(Coordinate x: Coordinate.values()) {
             LinkedHashMap<CartesianCoordinate, Cell> cellSliceMap = new LinkedHashMap<>();
             for (Coordinate y: Coordinate.values()) {
@@ -32,25 +32,30 @@ public class GameCells extends Cells {
                 cellSliceMap.put(c, cell);
             }
             CellSlice cellSlice = new CellSlice(cellSliceMap);
-            slices.add(cellSlice);
+            slices.addSlice(x, cellSlice);
         } //TODO
         return slices;
     }
 
     @Override
-    public List<CellSlice> getColumns() {
-        List<CellSlice> slices = new ArrayList<>();
+    public CellSlices getColumns() {
+        CellSlices slices = new CellSlices();
         for(Coordinate x: Coordinate.values()) {
-            LinkedHashMap<CartesianCoordinate, Cell> cellSliceMap = new LinkedHashMap<>();
-            for (Coordinate y: Coordinate.values()) {
-                CartesianCoordinate c = new CartesianCoordinate(x, y);
-                Cell cell = cells.get(c);
-                cellSliceMap.put(c, cell);
-            }
+            LinkedHashMap<CartesianCoordinate, Cell> cellSliceMap = getColumnSliceMap(x);
             CellSlice cellSlice = new CellSlice(cellSliceMap);
-            slices.add(cellSlice);
+            slices.addSlice(x, cellSlice);
         } //TODO delete duplicate
         return slices;
+    }
+
+    private LinkedHashMap<CartesianCoordinate, Cell> getColumnSliceMap(Coordinate x) {
+        LinkedHashMap<CartesianCoordinate, Cell> cellSliceMap = new LinkedHashMap<>();
+        for (Coordinate y: Coordinate.values()) {
+            CartesianCoordinate c = new CartesianCoordinate(x, y);
+            Cell cell = cells.get(c);
+            cellSliceMap.put(c, cell);
+        }
+        return cellSliceMap;
     }
 
 
@@ -82,9 +87,23 @@ public class GameCells extends Cells {
         swapValuesStatus = SWAP_VALUES_STATUS_OK;
     }
 
-    //предусловие: в хранилище есть ключ = key
-    public void emptyCell(CartesianCoordinate key) {
+    @Override
+    public void fillEmptyCellsForColumn(Coordinate x, CellSlice slice) {
+        for(Coordinate y: Coordinate.values()) {
+            CartesianCoordinate xy = new CartesianCoordinate(x, y);
+            Cell newCell = slice.getByCoordinate(xy);
+            cells.put(xy, newCell);
+        }
+
+
     }
+
+    //предусловие: в хранилище есть ключ = key
+    @Override
+    public void emptyCell(CartesianCoordinate key) {
+        cells.put(key, new Cell(Letter.O));
+    }
+
 
     //статусы
     @Override

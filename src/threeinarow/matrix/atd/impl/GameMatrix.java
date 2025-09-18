@@ -2,10 +2,12 @@ package threeinarow.matrix.atd.impl;
 
 import threeinarow.matrix.atd.Cells;
 import threeinarow.matrix.atd.Matrix;
-import threeinarow.matrix.realization.AdjacencyMatrix;
-import threeinarow.matrix.realization.CartesianCoordinate;
-import threeinarow.matrix.realization.CellSlice;
-import threeinarow.matrix.realization.Figures;
+import threeinarow.matrix.realization.*;
+
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 public class GameMatrix extends Matrix {
 
@@ -21,17 +23,16 @@ public class GameMatrix extends Matrix {
 
     @Override
     public boolean containsFigures() {
-
-        return false;
+        return !this.getFigures().isEmpty();
     }
 
     @Override
-    public Figures getFigures() { //TODO remove duplicate
-        Figures rowFigures = cells.getRows().stream()
+    public Figures getFigures() {
+        Figures rowFigures = cells.getRows().getSlices().stream()
                 .map(CellSlice::getThreeInARowCells)
                 .reduce(Figures.empty(), Figures::union);
 
-        Figures columnFigures = cells.getColumns().stream()
+        Figures columnFigures = cells.getColumns().getSlices().stream()
                 .map(CellSlice::getThreeInARowCells)
                 .reduce(Figures.empty(), Figures::union);
 
@@ -45,6 +46,12 @@ public class GameMatrix extends Matrix {
 
     @Override
     public void fillEmptyCells() {
+        CellSlices slices = cells.getColumns();
+        for (Coordinate x: Coordinate.values()) {
+            CellSlice slice = slices.getByCoordinate(x);
+            CellSlice newSlice = slice.copyWithEmptyCellsFilled();
+            cells.fillEmptyCellsForColumn(x, newSlice);
+        }
     }
 
     @Override
@@ -65,11 +72,8 @@ public class GameMatrix extends Matrix {
 
     @Override
     public void cleanFigures(Figures figures) {
-    }
-
-    @Override
-    public void clear() {
-
+        Set<CartesianCoordinate> coordinates = figures.getCoordinates();
+        coordinates.forEach(cells::emptyCell);
     }
 
     //status

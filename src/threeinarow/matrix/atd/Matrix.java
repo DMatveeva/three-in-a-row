@@ -37,8 +37,6 @@ public abstract class Matrix {
     //постусловие: figures пустые
     public abstract void cleanFigures(Figures figures); // notify(this, figures)
 
-    //постусловие: матрица очищена
-    public abstract void clear();
 
     public int getSwapCellStatus() {
         return swapCellStatus;

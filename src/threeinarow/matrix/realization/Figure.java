@@ -25,6 +25,10 @@ public class Figure extends AbstractFigure {
         return cells.size();
     }
 
+    public Set<CartesianCoordinate> getCoordinates() {
+        return cells.keySet();
+    }
+
     public void addCell(CartesianCoordinate cc, Cell cell) {
         cells.put(cc, cell);
     }

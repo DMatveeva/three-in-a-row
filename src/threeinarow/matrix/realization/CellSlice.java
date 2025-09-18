@@ -5,10 +5,54 @@ import java.util.stream.Collectors;
 
 public class CellSlice extends AbstractFigure {
 
-    Map<CartesianCoordinate, Cell> coordinateToCell;
+    private Coordinate basis;
+    private final LinkedHashMap<CartesianCoordinate, Cell> coordinateToCell; //TREE SET
 
     public CellSlice(LinkedHashMap<CartesianCoordinate, Cell> cells) {
-        this.coordinateToCell = Collections.unmodifiableMap(new LinkedHashMap<>(cells));
+        this.coordinateToCell = new LinkedHashMap<>(cells);
+    }
+
+    public Cell getByCoordinate(CartesianCoordinate c) {
+        return coordinateToCell.get(c);
+    }
+
+    //TODO
+    public CellSlice copyWithEmptyCellsFilled() {
+
+        Collection<Cell> cells = coordinateToCell.values();
+        List<Cell> notEmptyCells = new ArrayList<>();
+        for (Cell cell: cells) {
+            if(!cell.isEmpty()) {
+                notEmptyCells.add(cell);
+            }
+        }
+
+        int initialSize = coordinateToCell.size();
+        int notEmptySize = notEmptyCells.size();
+        int emptySize = initialSize - notEmptySize;
+
+        Random random = new Random();
+        List<Cell> randomCells = new ArrayList<>();
+        for (int i = 0; i < emptySize; i++) {
+            List<Letter> letters = Letter.getNotEmpty();
+            int randomIndex = random.nextInt(letters.size());
+            Letter l = letters.get(randomIndex);
+            randomCells.add(new Cell(l));
+        }
+
+        List<Cell> newCells = new ArrayList<>();
+        newCells.addAll(randomCells);
+        newCells.addAll(notEmptyCells);
+
+        LinkedHashMap<CartesianCoordinate, Cell> newMap = new LinkedHashMap<>();
+        Iterator<Cell> iterator = newCells.iterator();
+
+        Set<CartesianCoordinate> keys = coordinateToCell.keySet();
+        for (CartesianCoordinate cc: keys) {
+            newMap.put(cc, iterator.next());
+        }
+
+        return new CellSlice(newMap);
     }
 
     public Figures getThreeInARowCells() {
@@ -42,7 +86,6 @@ public class CellSlice extends AbstractFigure {
             return Figures.empty();
         }
         return new Figures(figuresBiggerThan3);
-
     }
 
     @Override
