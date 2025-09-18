@@ -1,6 +1,6 @@
 package threeinarow;
 
-import threeinarow.game.GameWithHistory;
+import threeinarow.game.Game;
 
 import static threeinarow.game.AbstractGame.*;
 
@@ -17,7 +17,7 @@ public class Main {
     }
 
 
-    public static void tryEnterCoordinates(GameWithHistory game) {
+    public static void tryEnterCoordinates(Game game) {
         System.out.println("Enter matrix coordinates:");
         while (game.getEnterCoordinatesStatus() != ENTER_COORDINATES_OK) {
             game.enterCoordinates();

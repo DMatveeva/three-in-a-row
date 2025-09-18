@@ -39,6 +39,14 @@ public final class CartesianCoordinate implements Comparable<CartesianCoordinate
         return (thisX == otherX && thisY.isNeighbour(otherY)) || (thisY == otherY && thisX.isNeighbour(otherX));
     }
 
+    public static CartesianCoordinate fromUI(String uiStr) {
+        char x = uiStr.charAt(0);
+        char y = uiStr.charAt(1);
+        Coordinate xCoord = Coordinate.valueOf(String.valueOf(x));
+        Coordinate yCoord = Coordinate.fromNum(String.valueOf(y));
+        return new CartesianCoordinate(xCoord, yCoord);
+    }
+
     public int getX() {
         return this.x.asNum();
     }

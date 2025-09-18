@@ -1,5 +1,7 @@
 package threeinarow.game;
 
+import threeinarow.matrix.realization.Figures;
+
 /**
  * АТД
  */
@@ -22,7 +24,7 @@ public abstract class AbstractGame {
     //запросы
     public abstract void showStepHistory();
 
-    public abstract void getFiguresAfterRound();
+    public abstract Figures getFiguresAfterRound();
 
     //команды
     //постусловие: введены корректные координаты клеток матрицы

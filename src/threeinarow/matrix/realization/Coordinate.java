@@ -1,5 +1,6 @@
 package threeinarow.matrix.realization;
 
+import java.util.Arrays;
 import java.util.EnumMap;
 import java.util.List;
 
@@ -32,6 +33,12 @@ public enum Coordinate implements Comparable<Coordinate> {
 
     public static int getMaxWidth() {
         return Coordinate.values().length;
+    }
+
+    public static Coordinate fromNum(String num) {
+        return Arrays.stream(Coordinate.values())
+                .filter(v -> v.num == Integer.parseInt(num))
+                .findFirst().get();
     }
 
     public boolean isNeighbour(Coordinate other) {

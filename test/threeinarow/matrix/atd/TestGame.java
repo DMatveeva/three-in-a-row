@@ -1,8 +1,8 @@
 package threeinarow.matrix.atd;
 
-import threeinarow.game.GameWithHistory;
+import threeinarow.game.Game;
 
-public abstract class TestGame extends GameWithHistory {
+public abstract class TestGame extends Game {
 
     String coordinate;
 
