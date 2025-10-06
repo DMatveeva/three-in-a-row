@@ -9,7 +9,7 @@
 
 #### Запуск:
 ```
-1. git pull 
+1. git pull https://github.com/DMatveeva/three-in-a-row.git
 2. cd "$директория проекта"
 2. javac -d out @sources.txt
 3. java -classpath out threeinarow.Main
