@@ -10,7 +10,7 @@ import static java.awt.geom.Rectangle2D.intersect;
  */
 public class Figure extends AbstractFigure {
 
-    Map<CartesianCoordinate, Cell> cells;
+    private Map<CartesianCoordinate, Cell> cells;
 
     public Figure(HashMap<CartesianCoordinate, Cell> cells) {
         this.cells = Map.copyOf(cells);

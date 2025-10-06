@@ -6,7 +6,6 @@ import java.util.Objects;
 public final class Cell {
 
     private final Letter value;
-    public boolean hit;
 
     public Cell(Letter letter) {
         this.value = letter;
@@ -14,10 +13,6 @@ public final class Cell {
 
     public boolean isEmpty() {
         return value == Letter.O;
-    }
-
-    public boolean isHit() {
-        return hit;
     }
 
     public String getValueForUI() {
