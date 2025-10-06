@@ -3,14 +3,13 @@ package threeinarow.matrix.realization;
 import java.util.*;
 import java.util.stream.Collectors;
 
-import static java.awt.geom.Rectangle2D.intersect;
 
 /**
  * Срез части Cells
  */
 public class Figure extends AbstractFigure {
 
-    private Map<CartesianCoordinate, Cell> cells;
+    private final Map<CartesianCoordinate, Cell> cells;
 
     public Figure(HashMap<CartesianCoordinate, Cell> cells) {
         this.cells = Map.copyOf(cells);
